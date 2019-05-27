@@ -30,10 +30,10 @@ sudo apt install -y openssl curl
 cd ~ && mkdir -p fisco && cd fisco
 ```
 
-- 下载`build_chain.sh`脚本
+- 下载[build_chain.sh](./build_chain.sh)脚本
 
 ```bash
-curl -LO https://raw.githubusercontent.com/FISCO-BCOS/FISCO-BCOS/master/tools/build_chain.sh && chmod u+x build_chain.sh
+chmod u+x build_chain.sh
 ```
 
 ### 搭建单群组4节点联盟链
@@ -41,7 +41,7 @@ curl -LO https://raw.githubusercontent.com/FISCO-BCOS/FISCO-BCOS/master/tools/bu
 在fisco目录下执行下面的指令，生成一条单群组4节点的FISCO链。需要保证机器的`30300~30303，20200~20203，8545~8548`端口没有被占用。
 
 ```bash
-bash build_chain.sh -l "127.0.0.1:4" -p 30300,20200,8545
+bash build_chain.sh -l "127.0.0.1:4" -p 30300,20200,8545 -d
 ```
 
 ```eval_rst
