@@ -67,7 +67,7 @@ SDK配置（Spring Bean）：
     </bean>
 ```
 
-区块链前置配置，如有DMZ区：
+区块链前置配置，如有DMZ区(多群组情况，只需配置多个Server即可)：
 ```
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -82,24 +82,45 @@ SDK配置（Spring Bean）：
     http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
     
     <!-- 区块链节点信息配置 -->
-  <bean id="proxyServer" class="org.fisco.bcos.channel.proxy.Server">
-    <property name="remoteConnections">
-      <bean class="org.fisco.bcos.channel.handler.ChannelConnections">
-        <property name="connectionsStr">
-          <list>
-            <value>127.0.0.1:5051</value><!-- 格式：IP:端口 -->
-          </list>
-        </property>
-      </bean>
-    </property>
-    
-    <property name="localConnections">
-      <bean class="org.fisco.bcos.channel.handler.ChannelConnections">
-      </bean>
-    </property>
-    <!-- 区块链前置监听端口配置，区块链SDK连接用 -->
-    <property name="bindPort" value="30333"/>
-  </bean>
+           <bean id="proxyServer" class="org.fisco.bcos.channel.proxy.Server">
+             <property name="remoteConnections">
+               <bean class="org.fisco.bcos.channel.handler.ChannelConnections">
+                 <property name="connectionsStr">
+                   <list>
+                     <value>127.0.0.1:5051</value><!-- 格式：IP:端口 -->
+                   </list>
+                 </property>
+               </bean>
+             </property>
+             
+             <property name="localConnections">
+               <bean class="org.fisco.bcos.channel.handler.ChannelConnections">
+               </bean>
+             </property>
+             <!-- 区块链前置监听端口配置，区块链SDK连接用 -->
+             <property name="bindPort" value="30333"/>
+           </bean>
+           
+    <!--多群组情况下，区块链节点信息配置 -->  
+           <bean id="proxyServer2" class="org.fisco.bcos.channel.proxy.Server">
+           		<property name="remoteConnections">
+           			<bean class="org.fisco.bcos.channel.handler.ChannelConnections">
+           				<property name="connectionsStr">
+           					<list>
+           						<value>127.0.0.1:5051</value><!-- 格式：IP:端口 -->
+           					</list>
+           				</property>
+           			</bean>
+           		</property>
+           
+           		<property name="localConnections">
+           			<bean class="org.fisco.bcos.channel.handler.ChannelConnections">
+           			</bean>
+           		</property>
+           		<!-- 区块链前置监听端口配置，区块链SDK连接用 -->
+           		<property name="bindPort" value="30334"/>
+           	</bean>
+
 </beans>
 ```
 
